@@ -12,9 +12,9 @@ The aim of this workshop is to introduce knowledge and tools that may help resea
 
 ## Links to original repositories of presented tools
 
-GRIM
-SPRITE
-(statcheck)
+- GRIM
+- SPRITE
+- (statcheck)
 ...
 
 ## Requirements
