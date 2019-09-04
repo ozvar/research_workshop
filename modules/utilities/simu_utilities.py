@@ -1,8 +1,6 @@
 import numpy as np
 from scipy import stats
 
-import pandas as pd
-
 
 def __compute_md_from_effect_size(sd, effect_size):
     '''
@@ -13,7 +11,7 @@ def __compute_md_from_effect_size(sd, effect_size):
     return abs(mean_difference)
 
 
-def generate_samples (n, effect_size, sd=1.0):
+def generate_samples(n, effect_size, sd=1.0):
     '''
     Docstring here
     '''
@@ -22,7 +20,7 @@ def generate_samples (n, effect_size, sd=1.0):
         sd=sd,
         effect_size=effect_size
     )
-    #for easiness we assume a gaussina centered at zero with unit sd
+    # for easiness we assume a gaussina centered at zero with unit sd
     experimental = np.random.normal(
         loc=0,
         scale=sd,
@@ -43,7 +41,7 @@ def generate_samples (n, effect_size, sd=1.0):
     return experimental, control
 
 
-def generate_correlated_samples (r, n):
+def generate_correlated_samples(r, n):
     '''
     Docstring here
     '''
@@ -52,15 +50,15 @@ def generate_correlated_samples (r, n):
         cov=[[1, r], [r, 1]],
         size=n
     )
-    x,y = correlated_data[:,0], correlated_data[:,1]
-    rho,p = stats.pearsonr(
+    x, y = correlated_data[:, 0], correlated_data[:, 1]
+    rho, p = stats.pearsonr(
         x,
         y
     )
-    return x,y,round(rho, 3),round(p,3)
+    return x, y, round(rho, 3), round(p, 3)
 
 
-def cohen_d (t,n):
+def cohen_d(t, n):
     '''
     Docstring here
     '''

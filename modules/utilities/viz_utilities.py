@@ -34,7 +34,7 @@ def visualize_experiments(sizes, experiments, powers,
         axs[0].set_xlim(1, n_experiments)
         axs[0].set_ylim(0.0, 1.0)
         axs[0].axvline(
-            x=int((len(experiment['p_values'])  * alpha)),
+            x=int((len(experiment['p_values']) * alpha)),
             linestyle='--',
             c='r'
         )
@@ -84,7 +84,7 @@ def visualize_correlation(x, y, r, p):
             x=x[index],
             y=y[index],
             ax=axs[index],
-            scatter_kws={'s':10}
+            scatter_kws={'s': 10}
         )
         axs[index].set_xlabel('Variable X')
         axs[index].set_ylabel('Variable Y')
@@ -106,7 +106,7 @@ def visualize_distribution(real_distribution, observed_distribution,
         font_scale=1.5,
         style='whitegrid'
     )
-    plt.figure(figsize=(10,10))
+    plt.figure(figsize=(10, 10))
     sns.distplot(
         a=real_distribution,
         hist=False,
