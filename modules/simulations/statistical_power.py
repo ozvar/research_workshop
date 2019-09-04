@@ -1,15 +1,33 @@
 from os.path import dirname, abspath
 import sys
-sys.path.append(dirname(dirname(abspath(__file__))))
+import time
 
 import numpy as np
 
 from scipy.stats import ttest_ind
 from statsmodels.stats.power import tt_ind_solve_power
 
-from utilities.simu_utilities import *
-from utilities.viz_utilities import *
+import playsound
 
+sys.path.append(dirname(dirname(abspath(__file__))))
+from utilities.simu_utilities import generate_samples, cohen_d
+from utilities.simu_utilities import generate_correlated_samples
+from utilities.viz_utilities import visualize_experiments
+from utilities.viz_utilities import visualize_correlation
+from utilities.viz_utilities import visualize_distribution
+
+
+def p_value_sonata(p_values, threshold=0.05):
+    '''
+    Docstring here
+    '''
+    for p in p_values:
+
+        if p < threshold:
+            playsound('{}\\sounds\\coin.mp3'.format(SOUNDS_PATH))
+        else:
+            playsound('{}\\sounds\\china.mp3'.format(SOUNDS_PATH))
+        time.sleep(0.5)
 
 def simulate_experiments(sample_sizes, effect_size, n_experiments, alpha=0.05):
     '''
@@ -26,11 +44,11 @@ def simulate_experiments(sample_sizes, effect_size, n_experiments, alpha=0.05):
             ratio=1.0
         )
 
-        p_values=[]
-        effect_sizes=[]
+        p_values = []
+        effect_sizes = []
         for experiment in range(n_experiments):
 
-            group_1, group_2 = generate_samples (
+            group_1, group_2 = generate_samples(
                 n=size,
                 effect_size=effect_size,
                 sd=1.0
@@ -44,9 +62,9 @@ def simulate_experiments(sample_sizes, effect_size, n_experiments, alpha=0.05):
             effect_sizes.append(round(cohen_d(t=t, n=size * 2), 3))
 
         experiments_outcomes.append(
-            {'p_values' : p_values,
-             'effect_sizes' : effect_sizes
-            }
+            {'p_values': p_values,
+             'effect_sizes': effect_sizes
+             }
         )
         achieved_powers.append(achieved_power)
 
@@ -65,11 +83,11 @@ def simulate_correlations(correlations, sample_sizes):
     '''
     for r in correlations:
 
-        x_0, y_0, r_0, p_0 = generate_correlated_samples (
+        x_0, y_0, r_0, p_0 = generate_correlated_samples(
             r=r,
             n=sample_sizes[0]
         )
-        x_1, y_1, r_1, p_1 = generate_correlated_samples (
+        x_1, y_1, r_1, p_1 = generate_correlated_samples(
             r=r,
             n=sample_sizes[1]
         )
@@ -98,16 +116,10 @@ def simulate_file_drawer(sample_size, effect_size_mu, effect_size_sigma,
             a=real_distribution_effect,
             size=1
         )
-        experimental, control = generate_samples (
+        experimental, control = generate_samples(
             n=sample_size,
             effect_size=sampled_effect,
             sd=1.0,
-        )
-        achieved_power = tt_ind_solve_power(
-            effect_size=sampled_effect,
-            nobs1=sample_size,
-            alpha=alpha,
-            ratio=1.0
         )
         t, p = ttest_ind(
             a=experimental,
@@ -149,4 +161,3 @@ if __name__ == '__main__':
         n_experiments=1000,
         alpha=0.05
     )
-    
