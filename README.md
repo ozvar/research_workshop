@@ -4,6 +4,9 @@ This repository houses the content presented at a workshop on research evaluatio
 
 The aim of this workshop is to introduce knowledge and tools that may help researchers better evaluate the accuracy of reported statistics - both in their own as well as in published research. A secondary aim is to cover concepts that may help researchers avoid the statistical issues illuminated in the workshop.
 
+## Simulations
+...
+
 ## Links to data (if any)
 ...
 
