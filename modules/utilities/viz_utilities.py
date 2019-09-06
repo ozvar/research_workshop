@@ -3,7 +3,7 @@ import seaborn as sns
 
 
 def visualize_experiments(sizes, experiments, powers,
-                          effect_size, alpha=0.05,):
+                          effect_size, viz_path, alpha=0.05, verbose=True):
     '''
     Docstring here
     '''
@@ -61,10 +61,13 @@ def visualize_experiments(sizes, experiments, powers,
     )
 
     plt.legend()
-    plt.show()
+    plt.savefig('{}\\simulated_experiments.jpg'.format(viz_path))
+    plt.close()
+    if verbose:
+        plt.show()
 
 
-def visualize_correlation(x, y, r, p):
+def visualize_correlation(x, y, r, real_r, p, viz_path, verbose=True):
     '''
     Docstring here
     '''
@@ -94,11 +97,14 @@ def visualize_correlation(x, y, r, p):
             'P Value {} '.format(len(x[index]), r[index], p[index])
         )
 
-    plt.show()
+    plt.savefig('{}\\simulated_correlations_{}.jpg'.format(viz_path, real_r))
+    plt.close()
+    if verbose:
+        plt.show()
 
 
 def visualize_distribution(real_distribution, observed_distribution,
-                           title, metric="Cohen's D"):
+                           title, viz_path, metric="Cohen's D", verbose=True):
     '''
     Docstring here
     '''
@@ -124,4 +130,7 @@ def visualize_distribution(real_distribution, observed_distribution,
     plt.xlabel(metric)
     plt.ylabel('Density')
     plt.title(title)
-    plt.show()
+    plt.savefig('{}\\simulated_filedrawer.jpg'.format(viz_path))
+    plt.close()
+    if verbose:
+        plt.show()
