@@ -1,5 +1,3 @@
-from os.path import dirname, abspath
-import sys
 import time
 
 import numpy as np
@@ -7,29 +5,61 @@ import numpy as np
 from scipy.stats import ttest_ind
 from statsmodels.stats.power import tt_ind_solve_power
 
+import winsound
 import playsound
 
-sys.path.append(dirname(dirname(abspath(__file__))))
-from utilities.simu_utilities import generate_samples, cohen_d
-from utilities.simu_utilities import generate_correlated_samples
-from utilities.viz_utilities import visualize_experiments
-from utilities.viz_utilities import visualize_correlation
-from utilities.viz_utilities import visualize_distribution
+from ..utilities.simu_utilities import cohen_d
+from ..utilities.simu_utilities import generate_samples
+from ..utilities.simu_utilities import generate_correlated_samples
+from ..utilities.viz_utilities import visualize_correlation
+from ..utilities.viz_utilities import visualize_distribution
+from ..utilities.viz_utilities import visualize_experiments
 
 
-def p_value_sonata(p_values, threshold=0.05):
+def p_value_sonata(sample_size, effect_size, n_experiments,
+                   threshold=None, sounds_path=None, verbose=True):
     '''
     Docstring here
     '''
+    p_values_range = np.arange(0.000, 1.001, 0.001)
+    sounds_range = np.flip(np.arange(99, 1101))
+    p_to_sound = {
+        round(p, 3): sound for p, sound in zip(p_values_range, sounds_range)
+    }
+
+    p_values = []
+    for experiment in range(n_experiments):
+
+        group_1, group_2 = generate_samples(
+            n=sample_size,
+            effect_size=effect_size,
+            sd=1.0
+        )
+
+        t, p = ttest_ind(
+            a=group_1,
+            b=group_2
+        )
+        p_values.append(round(p, 3))
+
     for p in p_values:
 
-        if p < threshold:
-            playsound('{}\\sounds\\coin.mp3'.format(SOUNDS_PATH))
+        if threshold is not None:
+            if p < threshold:
+                playsound.playsound('{}\\coin.mp3'.format(sounds_path))
+            else:
+                playsound.playsound('{}\\china.mp3'.format(sounds_path))
         else:
-            playsound('{}\\sounds\\china.mp3'.format(SOUNDS_PATH))
-        time.sleep(0.5)
+            winsound.Beep(
+                p_to_sound[p],
+                250
+            )
 
-def simulate_experiments(sample_sizes, effect_size, n_experiments, alpha=0.05):
+        time.sleep(0.10)
+
+
+def simulate_experiments(sample_sizes, effect_size, n_experiments,
+                         viz_path, alpha=0.05, verbose=True):
     '''
     Docstring here
     '''
@@ -73,11 +103,14 @@ def simulate_experiments(sample_sizes, effect_size, n_experiments, alpha=0.05):
         experiments=experiments_outcomes,
         powers=achieved_powers,
         alpha=alpha,
-        effect_size=effect_size
+        effect_size=effect_size,
+        viz_path=viz_path,
+        verbose=verbose
     )
 
 
-def simulate_correlations(correlations, sample_sizes):
+def simulate_correlations(correlations, sample_0, sample_1, viz_path,
+                          verbose=True):
     '''
     Docstring here
     '''
@@ -85,22 +118,25 @@ def simulate_correlations(correlations, sample_sizes):
 
         x_0, y_0, r_0, p_0 = generate_correlated_samples(
             r=r,
-            n=sample_sizes[0]
+            n=sample_0
         )
         x_1, y_1, r_1, p_1 = generate_correlated_samples(
             r=r,
-            n=sample_sizes[1]
+            n=sample_1
         )
         visualize_correlation(
             x=[x_0, x_1],
             y=[y_0, y_1],
             r=[r_0, r_1],
-            p=[p_0, p_1]
+            p=[p_0, p_1],
+            viz_path=viz_path,
+            verbose=verbose,
+            real_r=r
         )
 
 
 def simulate_file_drawer(sample_size, effect_size_mu, effect_size_sigma,
-                         n_experiments, alpha=0.05):
+                         n_experiments, viz_path, alpha=0.05, verbose=True):
     '''
     Docstring here
     '''
@@ -135,29 +171,7 @@ def simulate_file_drawer(sample_size, effect_size_mu, effect_size_sigma,
     visualize_distribution(
         real_distribution=real_distribution_effect,
         observed_distribution=observed_distribution_effect,
-        title='Observed Effect Size Distribution of Only Significant Results'
-    )
-
-
-if __name__ == '__main__':
-
-    VIZ_SAVE_PATH = '{}\\figures'.format(
-        dirname(dirname(abspath(__file__)))
-    )
-    simulate_experiments(
-        sample_sizes=[5, 10, 20, 50, 100, 200, 400],
-        effect_size=0.3,
-        n_experiments=100
-    )
-
-    simulate_correlations(
-        correlations=[0.05, 0.3, 0.6],
-        sample_sizes=[30, 30000]
-    )
-    simulate_file_drawer(
-        sample_size=20,
-        effect_size_mu=0.5,
-        effect_size_sigma=0.05,
-        n_experiments=1000,
-        alpha=0.05
+        title='Observed Effect Size Distribution of Only Significant Results',
+        viz_path=viz_path,
+        verbose=True
     )
