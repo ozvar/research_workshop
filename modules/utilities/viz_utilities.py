@@ -113,6 +113,9 @@ def visualize_distribution(real_distribution, observed_distribution,
         style='whitegrid'
     )
     plt.figure(figsize=(10, 10))
+    plt.xlabel(metric)
+    plt.ylabel('Density')
+    plt.title(title)
     sns.distplot(
         a=real_distribution,
         hist=False,
@@ -120,6 +123,7 @@ def visualize_distribution(real_distribution, observed_distribution,
         kde_kws={'shade': True},
         label='Real Distribution {}'.format(metric)
     )
+    plt.savefig('{}\\simulated_filedrawer_0.jpg'.format(viz_path))
     sns.distplot(
         a=observed_distribution,
         hist=False,
@@ -127,10 +131,7 @@ def visualize_distribution(real_distribution, observed_distribution,
         kde_kws={'shade': True},
         label='Observed Distribution {}'.format(metric)
     )
-    plt.xlabel(metric)
-    plt.ylabel('Density')
-    plt.title(title)
-    plt.savefig('{}\\simulated_filedrawer.jpg'.format(viz_path))
+    plt.savefig('{}\\simulated_filedrawer_1.jpg'.format(viz_path))
     plt.close()
     if verbose:
         plt.show()

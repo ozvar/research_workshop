@@ -77,7 +77,8 @@ class RobotResearchAssistant(__DefaultSentences):
                            'tu'
                            ]
             )
-            playsound.playsound('sounds\\pcp.mp3')
+            if not self.mute:
+                playsound.playsound('sounds\\pcp.mp3')
             self.speak(
                 sentences=[self.ready_to_rumble,
                            self.time_to_research
@@ -133,7 +134,7 @@ if __name__ == '__main__':
         'play p value sonata': {
             'sample_size': 30,
             'effect_size': 0.4,
-            'n_experiments': 20,
+            'n_experiments': 8,
             'threshold': 0.05,
             'sounds_path': 'sounds',
             'verbose': True
@@ -163,6 +164,6 @@ if __name__ == '__main__':
             'verbose': False
         }
     }
-    rra = RobotResearchAssistant()
+    rra = RobotResearchAssistant(mute=False)
     rra.do_research(expriments_parameters=experiments_parameters)
     del rra
