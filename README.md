@@ -5,7 +5,9 @@ This repository houses the content presented at a workshop on research evaluatio
 The aim of this workshop is to introduce knowledge and tools that may help researchers better evaluate the accuracy of reported statistics - both in their own as well as in published research. A secondary aim is to cover concepts that may help researchers avoid the statistical issues illuminated in the workshop.
 
 ## Simulations
-...
+This sections aims to illustrate the inter-relation between statistical power, statistical significance, sample size and effect size through a series of simulations.  
+  
+ Each simulation can be performed employing the relative function contained in `statistical_power.py`, or a series of experiments can be scheduled through the simulations manager located in `AI_reserch_police.py`. 
 
 ## Links to data (if any)
 ...
