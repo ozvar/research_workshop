@@ -23,3 +23,15 @@ This sections aims to illustrate the inter-relation between statistical power, s
 ...
 
 ## Requirements
+We recommend setting up a virtual environment to avoid any dependency conflicts as shown below:
+``` python
+# Pipenv is a virtual environment manager
+pip install pipenv
+
+# Create a virtual environment in this directory
+pipenv install
+
+# open / activate virtual environment
+pipenv shell
+# Now we are good to go....
+```
