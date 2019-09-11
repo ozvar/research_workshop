@@ -28,7 +28,7 @@ class __DefaultSentences:
 
 class RobotResearchAssistant(__DefaultSentences):
     '''
-    Class implementing the functions manager
+    Doctring here
     '''
     def __init__(self, mute=False):
         '''
@@ -60,6 +60,7 @@ class RobotResearchAssistant(__DefaultSentences):
 
     def __unlock_cosmic_powers(self, cosmic_password):
         '''
+        Doctring here
         '''
         if cosmic_password != self.cosmic_password:
             self.speak(
@@ -88,6 +89,7 @@ class RobotResearchAssistant(__DefaultSentences):
 
     def speak(self, sentences):
         '''
+        Doctring here
         '''
         for sentence in sentences:
 
@@ -98,6 +100,7 @@ class RobotResearchAssistant(__DefaultSentences):
 
     def do_experiment(self, experiment_function, **kwargs):
         '''
+        Doctring here
         '''
         self.speak(
             sentences=['I am going to {}'.format(experiment_function)]
@@ -106,6 +109,7 @@ class RobotResearchAssistant(__DefaultSentences):
 
     def do_research(self, expriments_parameters):
         '''
+        Doctring here
         '''
         self.speak(
             sentences=['Please, unlock my artificially intelligent brain ']
