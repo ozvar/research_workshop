@@ -42,7 +42,8 @@ Samples a set of effect sizes values from a normal distribution given parameters
 ...
 
 ## Requirements
-We recommend setting up a virtual environment to avoid any dependency conflicts as shown below:
+We recommend setting up a virtual environment to avoid any dependency conflicts as shown below:  
+  
 ``` python
 # Pipenv is a virtual environment manager
 pip install pipenv
@@ -57,3 +58,5 @@ pipenv shell
 pip install -r requirements.txt
 # Now we are good to go....
 ```
+  
+For Windows users we **strongly** advise to install `numpy==1.17.1+mkl` and `scipy==1.3.1` (in this order) directly from the binaries distributed through https://www.lfd.uci.edu/~gohlke/pythonlibs.
