@@ -28,18 +28,10 @@ Samples a set of effect sizes values from a normal distribution given parameters
 **Experiment** consists in randomly sample two sets of values from two normal distributions (sigma=1) which parameters mu differ according to a specified effect size (Cohen's d) and then comparing them via an indipendent samples t-test.  
 **Correltions** consists in randomly sample two sets of values from a multivariate normal distributions with mu=0 and covariance matrix=[[1, rho], [rho, 1]] and compute the strength of their relationship through Pearson product-moment correlation.
 
-## Links to data (if any)
-...
-
-## Links to presented literature
-...
-
 ## Links to original repositories of presented tools
 
 - GRIM
 - SPRITE
-- (statcheck)
-...
 
 ## Requirements
 We recommend setting up a virtual environment to avoid any dependency conflicts as shown below:  
