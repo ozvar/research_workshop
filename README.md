@@ -16,13 +16,32 @@ Simulate a series of experiments according to a given sample size and dimension 
 according to the significance level achieved in a specific simulated experiment. 
 
 * `simulate_experiments`
-Simulate a series of experiments according to different sample sizes and dimension of effect. The function will produce two point-plots showing the ordered significance levels and observed dimension of effect for each experiment performed with each sample size.
-
+Simulate a series of experiments according to different sample sizes and dimension of effect. The function will produce two point-plots showing the ordered significance levels and observed dimension of effect for each experiment performed with each sample size.  
+Example of results:  
+  
+<p align="center">   
+  <img width="500" height="400" src="https://github.com/ozvar/research_workshop/blob/master/figures/simulated_experiments.jpg">
+</p>  
+  
 * `simulate_correlations`
-Simulate pairs of correlations according to two sample sizes and different dimensions of effect. The function will produce two scatter plots with a fitted regression line reporting the respective signifgicance levels and observed dimension of effect.
-
+Simulate pairs of correlations according to two sample sizes and different dimensions of effect. The function will produce two scatter plots with a fitted regression line reporting the respective signifgicance levels and observed dimension of effect.  
+Example of results:  
+  
+<p align="center"> 
+  
+  <img width="400" height="400" src="https://github.com/ozvar/research_workshop/blob/master/figures/simulated_correlations_0.05.jpg">
+  
+  <img width="400" height="400" src="https://github.com/ozvar/research_workshop/blob/master/figures/simulated_correlations_0.2.jpg">
+  
+</p>  
+  
 * `simulate_filedrawer`
-Samples a set of effect sizes values from a normal distribution given parameters mu and sigma. From the generated distribution of effect sizes, randomly sample a set of values, for each value simulate an experiment accordingly to a given sample size and store the observed dimension of effect of only those experiment that resulted statistically significant. The function will produce a density plot comparing the distribution of 'ground truth' effect sizes and the 'reported' observed effect sizes.
+Samples a set of effect sizes values from a normal distribution given parameters mu and sigma. From the generated distribution of effect sizes, randomly sample a set of values, for each value simulate an experiment accordingly to a given sample size and store the observed dimension of effect of only those experiment that resulted statistically significant. The function will produce a density plot comparing the distribution of 'ground truth' effect sizes and the 'reported' observed effect sizes.  
+Example of results:  
+  
+<p align="center">   
+  <img width="400" height="400" src="https://github.com/ozvar/research_workshop/blob/master/figures/simulated_filedrawer_1.jpg">
+</p>  
   
 ** In this specific framework:  
 **Experiment** consists in randomly sample two sets of values from two normal distributions (sigma=1) which parameters mu differ according to a specified effect size (Cohen's d) and then comparing them via an indipendent samples t-test.  
@@ -31,7 +50,7 @@ Samples a set of effect sizes values from a normal distribution given parameters
 ## Simulations Manager  
 UP NEXT
   
-## Links to original repositories of presented tools
+## Links to repositories and materials that inspired the workshop.
 
 - Granularity-Related Inconsistency of Means (GRIM)  
     
@@ -41,6 +60,12 @@ UP NEXT
   
   * https://osf.io/pwjad/  
   * https://github.com/QuentinAndre/pysprite  
+
+- Materials  
+   
+  * https://www.tylervigen.com/spurious-correlations  
+  * https://rpsychologist.com/  
+  * https://www.coursera.org/learn/statistical-inferences  
   
 ## Requirements
 We recommend setting up a virtual environment to avoid any dependency conflicts as shown below:  
