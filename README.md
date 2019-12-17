@@ -2,8 +2,8 @@
 
 This repository houses the content presented at a workshop on research evaluation at the IGGI Conference 2019. 
 
-The aim of this workshop is to introduce knowledge and tools that may help researchers better evaluate the accuracy of reported statistics - both in their own as well as in published research. A secondary aim is to cover concepts that may help researchers avoid the statistical issues illuminated in the workshop.
-
+The aim of this workshop is to introduce knowledge and tools that may help researchers better evaluate the accuracy of reported statistics - both in their own as well as in published research. A secondary aim is to cover concepts that may help researchers avoid the statistical issues illuminated in the workshop.  
+  
 ## Simulations
 This section aims to illustrate the inter-relation between statistical power, statistical significance, sample size and effect size through a series of simulations.  
   
@@ -26,13 +26,22 @@ Samples a set of effect sizes values from a normal distribution given parameters
   
 ** In this specific framework:  
 **Experiment** consists in randomly sample two sets of values from two normal distributions (sigma=1) which parameters mu differ according to a specified effect size (Cohen's d) and then comparing them via an indipendent samples t-test.  
-**Correltions** consists in randomly sample two sets of values from a multivariate normal distributions with mu=0 and covariance matrix=[[1, rho], [rho, 1]] and compute the strength of their relationship through Pearson product-moment correlation.
-
+**Correltions** consists in randomly sample two sets of values from a multivariate normal distributions with mu=0 and covariance matrix=[[1, rho], [rho, 1]] and compute the strength of their relationship through Pearson product-moment correlation.  
+  
+## Simulations Manager  
+UP NEXT
+  
 ## Links to original repositories of presented tools
 
-- GRIM
-- SPRITE
+- Granularity-Related Inconsistency of Means (GRIM)  
+    
+  * No existing repository (AFAWK)
 
+- Sample Parameter Reconstruction via Iterative TEchniques (SPRITE)  
+  
+  * https://osf.io/pwjad/  
+  * https://github.com/QuentinAndre/pysprite  
+  
 ## Requirements
 We recommend setting up a virtual environment to avoid any dependency conflicts as shown below:  
   
