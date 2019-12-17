@@ -139,7 +139,7 @@ if __name__ == '__main__':
             'sample_size': 30,
             'effect_size': 0.4,
             'n_experiments': 8,
-            'threshold': 0.05,
+            'alpha': 0.05,
             'sounds_path': 'sounds',
             'verbose': True
         },
