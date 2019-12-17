@@ -1,4 +1,4 @@
-# Tools and Knowledge to Detect Statistical Oddities in Published Research
+# Detect Statistical Oddities in Published Research: Practical and Theoretical Tools
 
 This repository houses the content presented at a workshop on research evaluation at the IGGI Conference 2019. 
 
