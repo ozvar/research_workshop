@@ -17,9 +17,32 @@ from ..utilities.viz_utilities import visualize_experiments
 
 
 def p_value_sonata(sample_size, effect_size, n_experiments,
-                   threshold=None, sounds_path=None, verbose=True):
+                   alpha=None, sounds_path=None, verbose=True):
     '''
-    Docstring here
+    Function for playing different sounds depending on the p values
+    obtained from a series of simulated "experiments". If no alpha
+    is provided the sound will increase in tone depending on the 
+    value of p otherwie a significant and no significant sound 
+    will be played.
+
+    Args:
+        - sample_size: an integer specifying the sample size of each 
+          of the two groups in the simulated experiments.
+        - effect_size: a float specifying the magnitude of the
+          difference between the two groups in the simulated 
+          experiments (Cohen's d).
+        - n_experiments: an integer specifying the number of 
+          simulated experiments.
+        - alpha: a float specifying the p-value threshold for
+          considering the results of an experiment statistically
+          significant. Only used when threshold != None.
+        - sounds_path: a string specifying the location of the
+          sound files played for significant and non-significant 
+          results.
+        - verbose: a bolean kept only for consistency.
+        
+    Returns:
+        - None
     '''
     p_values_range = np.arange(0.000, 1.001, 0.001)
     sounds_range = np.flip(np.arange(99, 1101))
@@ -44,11 +67,11 @@ def p_value_sonata(sample_size, effect_size, n_experiments,
 
     for p in p_values:
 
-        if threshold is not None:
-            if p < threshold:
-                playsound.playsound('{}\\coin.mp3'.format(sounds_path))
+        if alpha is not None:
+            if p < alpha:
+                playsound.playsound('{}\\sig.mp3'.format(sounds_path))
             else:
-                playsound.playsound('{}\\china.mp3'.format(sounds_path))
+                playsound.playsound('{}\\non_sig.mp3'.format(sounds_path))
         else:
             winsound.Beep(
                 p_to_sound[p],
@@ -61,7 +84,28 @@ def p_value_sonata(sample_size, effect_size, n_experiments,
 def simulate_experiments(sample_sizes, effect_size, n_experiments,
                          viz_path, alpha=0.05, verbose=True):
     '''
-    Docstring here
+    Function for simulating and comparing experiments carried out 
+    with different sample sizes. For each experiment effect size 
+    and alpha are fixed.
+
+    Args:
+        - sample_size: an integer specifying the sample size of each 
+          of the two groups in the simulated experiments.
+        - effect_size: a float specifying the magnitude of the
+          difference between the two groups in the simulated 
+          experiments (Cohen's d).
+        - n_experiments: an integer specifying the number of 
+          simulated experiments.
+        - viz_path: a string specifying the location where to
+          save the plotted results.
+        - alpha: a float specifying the p-value threshold for
+          considering the results of an experiment statistically
+          significant.
+        - verbose: a bolean specifying if the plotted results are showed 
+          on screen.
+        
+    Returns:
+        - None
     '''
     experiments_outcomes = []
     achieved_powers = []
@@ -112,7 +156,23 @@ def simulate_experiments(sample_sizes, effect_size, n_experiments,
 def simulate_correlations(correlations, sample_0, sample_1, viz_path,
                           verbose=True):
     '''
-    Docstring here
+    Function for simulating and comparing correlations between 
+    two groups differing in sample size.
+
+    Args:
+        - correlations: an iterable of float containing the r values
+          the will be tested.
+        - sample_0: an integer specifying the sample size for the
+          first group.
+        - sample_1: an integer specifying the sample size for the
+          second group.
+        - viz_path: a string specifying the location where to
+          save the plotted results.
+        - verbose: a bolean specifying if the plotted results are showed 
+          on screen.
+        
+    Returns:
+        - None
     '''
     for r in correlations:
 
@@ -138,7 +198,42 @@ def simulate_correlations(correlations, sample_0, sample_1, viz_path,
 def simulate_file_drawer(sample_size, effect_size_mu, effect_size_sigma,
                          n_experiments, viz_path, alpha=0.05, verbose=True):
     '''
-    Docstring here
+    Function for simulating and visualizing a file-drawer effect. 
+    
+    We assume  that the effect size linked to a specific phenomenon under 
+    investigation will oscillate (for various reasons: e.g. noise) producing 
+    a normal distribution with mean mu and standard deviation sigma. 
+    
+    We will then sample from this distribution and simulate experiments with 
+    the obtained effect size. At this point we will compute and retain only 
+    the estimated (not the "real" sampled effect size) effect size for 
+    those experiments which appeared to lead to statistically significant 
+    results. We will then compare the ground truth distribution of effect 
+    sizes with the observed one.
+
+    This simulation aims to show what happens to the estimated effect sizes
+    when researchers conduct experiments with low power and decide to report
+    only significant results.
+
+    Args:
+        - sample size: an integer specifying the sample size of each 
+          of the two groups in the simulated experiments.
+        - effect_size_mu: a float specifying the mean of the ground 
+          truth effect size distribution.
+        - effect_size_sigma: a float specifying the std of the ground 
+          truth effect size distribution.
+        - n_experiments: an integer specifying the number of 
+          simulated experiments.          
+        - viz_path: a string specifying the location where to
+          save the plotted results.
+        - alpha: a float specifying the p-value threshold for
+          considering the results of an experiment statistically
+          significant.
+        - verbose: a bolean specifying if the plotted results are showed 
+          on screen.
+        
+    Returns:
+        - None
     '''
     observed_distribution_effect = []
     real_distribution_effect = np.random.normal(
