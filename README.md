@@ -66,6 +66,7 @@ UP NEXT
   * https://www.tylervigen.com/spurious-correlations  
   * https://rpsychologist.com/  
   * https://www.coursera.org/learn/statistical-inferences  
+  * https://www.youtube.com/watch?v=ez4DgdurRPg inspired the `play_p_value_sonata` simulation
   
 ## Requirements
 We recommend setting up a virtual environment to avoid any dependency conflicts as shown below:  
