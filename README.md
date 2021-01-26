@@ -20,7 +20,7 @@ Simulate a series of experiments according to different sample sizes and dimensi
 Example of results:  
   
 <p align="center">   
-  <img width="500" height="400" src="https://github.com/ozvar/research_workshop/blob/master/figures/simulated_experiments.jpg">
+  <img width="600" height="550" src="https://github.com/ozvar/research_workshop/blob/master/figures/simulated_experiments.jpg">
 </p>  
   
 * `simulate_correlations`
@@ -29,9 +29,9 @@ Example of results:
   
 <p align="center"> 
   
-  <img width="400" height="400" src="https://github.com/ozvar/research_workshop/blob/master/figures/simulated_correlations_0.05.jpg">
+  <img width="600" height="550" src="https://github.com/ozvar/research_workshop/blob/master/figures/simulated_correlations_0.05.jpg">
   
-  <img width="400" height="400" src="https://github.com/ozvar/research_workshop/blob/master/figures/simulated_correlations_0.2.jpg">
+  <img width="600" height="550" src="https://github.com/ozvar/research_workshop/blob/master/figures/simulated_correlations_0.2.jpg">
   
 </p>  
   
